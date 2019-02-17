@@ -4,11 +4,11 @@ import {
     StyleSheet,
     Text,
     View,
-  } from 'react-native'
+  } from 'react-native';
 
 
 
-  
+
 const styles = StyleSheet.create({
     loadingView: {
       alignItems: 'center',
@@ -29,4 +29,4 @@ export const Loading = () => {
             <Text style={styles.loadingText} >Loading . . .</Text>
         </View>
     );
-};
+}

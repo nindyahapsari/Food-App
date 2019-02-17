@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView } from 'react-native';
-import { Card, Icon } from 'react-native-elements';
+import { Card, Icon, Tile } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
-import { Loading } from './LoadingComponent';
+import { Loading } from './LoadingComponents';
 
 const mapStateToProps = state => {
     return {
@@ -27,7 +27,7 @@ function RenderItem(props) {
     else if (props.errMess) {
         return(
             <View> 
-                <Text>{props.erreMess}</Text>
+                <Text>{props.errMess}</Text>
             </View>
         );
     }
@@ -37,7 +37,7 @@ function RenderItem(props) {
                 <Card
                     featuredTitle={item.name}
                     featuredSubtitle={item.designation}
-                    image={{uri: baseUrl + item.image}}>
+                    image={{ uri: baseUrl + item.image }}>
                     <Text
                         style={{margin: 10}}>
                         {item.description}</Text>
@@ -52,14 +52,6 @@ function RenderItem(props) {
 
 class Home extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            dishes: DISHES,
-            promotions: PROMOTIONS,
-            leaders: LEADERS
-        };
-    }
 
     static navigationOptions = {
         title: 'Home'
@@ -70,15 +62,15 @@ class Home extends Component {
             <ScrollView>
                 <RenderItem item={this.props.dishes.dishes.filter((dish) => dish.featured)[0]}
                     isLoading={this.props.dishes.isLoading}
-                    erreMess={this.props.dishes.erreMess} 
+                    erreMess={this.props.dishes.errMess} 
                     />
                 <RenderItem item={this.props.promotions.promotions.filter((promo) => promo.featured)[0]}
                     isLoading={this.props.promotions.isLoading}
-                    erreMess={this.props.promotions.erreMess} 
+                    erreMess={this.props.promotions.errMess} 
                     />
                 <RenderItem item={this.props.leaders.leaders.filter((leader) => leader.featured)[0]}
                     isLoading={this.props.leaders.isLoading}
-                    erreMess={this.props.leaders.erreMess} 
+                    erreMess={this.props.leaders.errMess} 
                     />
         </ScrollView>
         );

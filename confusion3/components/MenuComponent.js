@@ -3,7 +3,8 @@ import { View, FlatList } from 'react-native';
 import { Tile } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
-import { Loading } from './LoadingComponent';
+import { Loading } from './LoadingComponents';
+
 
 
 
@@ -17,7 +18,7 @@ const mapStateToProps = state => {
 class Menu extends Component {
 
 
-
+ 
     static naviagtionOptions = {
         title: 'Menu'
     };
@@ -51,7 +52,7 @@ class Menu extends Component {
         else if (this.props.dishes.errMess) {
             return(
                 <View>            
-                    <Text>{props.dishes.errMess}</Text>
+                    <Text>{this.props.dishes.errMess}</Text>
                 </View>            
             );
         }

@@ -3,7 +3,7 @@ import { View, Text, ScrollView, FlatList } from 'react-native';
 import { Card, Icon, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
-import { Loading } from './LoadingComponent';
+import { Loading } from './LoadingComponents';
 
 
 
@@ -33,12 +33,7 @@ function History() {
 
 
 class About extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            leaders : LEADERS
-        };
-    }
+   
 
     static navigationOptions = {
         title: 'About Us'
@@ -90,7 +85,7 @@ class About extends Component {
                         title='Corporate Leadership'>
                     <FlatList 
                         data={this.props.leaders.leaders}
-                        renderItem={renderLeader}
+                        renderItem={renderLeaderDesc}
                         keyExtractor={item => item.id.toString()}
                         />
                     </Card>

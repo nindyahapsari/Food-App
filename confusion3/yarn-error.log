@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/Cellar/yarn/1.13.0/libexec/bin/yarn.js add react-redux@5.0.7
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.13.0/libexec/bin/yarn.js add react-native-datepicker
 
 PATH: 
   /usr/local/bin:/Users/nindyahapsari/.config/yarn/global/node_modules/bin:/Users/nindyahapsari/anaconda3/bin:/Users/nindyahapsari/library/flutter/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/nindyahapsari/Library/Android/sdk/platform-tools/:/Users/nindyahapsari/Library/nindyahapsari/sdk/platform-tools/:/Users/nindyahapsari/Library/nindyahapsari/sdk/platform-tools/
@@ -31,7 +31,10 @@ npm manifest:
       "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
       "react-native-elements": "1.0.0",
       "react-navigation": "2.0.1",
-      "redux": "^4.0.1"
+      "react-redux": "^6.0.0",
+      "redux": "^4.0.1",
+      "redux-logger": "^3.0.6",
+      "redux-thunk": "^2.3.0"
     },
     "devDependencies": {
       "@expo/vector-icons": "^9.0.0",

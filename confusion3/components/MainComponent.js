@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
 import Menu from './MenuComponent';
-import Dishdetail from './DishdetailComponent';
-import { View, Platform, Text, ScrollView, Image, StyleSheet } from 'react-native';
-import { createStackNavigator, createDrawerNavigator, DrawerItems, SafeAreaView } from 'react-navigation';
-import { Icon } from 'react-native-elements';
 import Home from './HomeComponent';
 import ContactUs from './ContactComponent';
 import About from './AboutComponent';
+import Reservation from './ReservationComponent';
+import { View, Platform, Text, ScrollView, Image, StyleSheet } from 'react-native';
+import { createStackNavigator, createDrawerNavigator, DrawerItems, SafeAreaView } from 'react-navigation';
+import { Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { fetchDishes, fetchComments, fetchPromos, fetchLeaders } from '../redux/ActionCreators';
 
 
-
+// dont need it here, main using the mapDispathToProps to get the data
 const mapStateToProps = state => {
   return {
-    dishes: state.dishes,
-    comments: state.comments,
-    promotions: state.promotions,
-    leaders: state.leaders
+    // dishes: state.dishes,
+    // comments: state.comments,
+    // promotions: state.promotions,
+    // leaders: state.leaders
   }
 }
 
@@ -26,20 +26,22 @@ const mapDispatchToProps = dispatch => ({
   fetchComments: () => dispatch(fetchComments()),
   fetchPromos: () => dispatch(fetchPromos()),
   fetchLeaders: () => dispatch(fetchLeaders()),
-})
+});
 
 
 
 
 const MenuNavigator = createStackNavigator({
-    Menu: { screen: Menu,
-        navigationOptions: ({ navigation }) => ({
-          headerLeft: <Icon name="menu" size={24} 
-          color= 'white'
-          onPress={ () => navigation.toggleDrawer() } />          
-        })  
+    Menu: { screen: Menu, 
+      navigationOptions: ({ navigation }) => ({
+        headerTintColor: "#ffffff",
+        headerLeft: <Icon name="menu" size={24}
+        color= 'white'
+        onPress={ () => navigation.toggleDrawer()} 
+        />
+      })
     },
-    Dishdetail: { screen: Dishdetail }
+    // Dishdetail: { screen: Dishdetail }
     // becareful with alphabets in words
 }, 
 {
@@ -78,7 +80,7 @@ const ContactNavigator = createStackNavigator({
     ContactUs : {screen : ContactUs}
 },
     { 
-        navigationOptions: ({ naviagation }) => ({
+        navigationOptions: ({ navigation }) => ({
             headerStyle: {
                 backgroundColor : "#00796b"
             },
@@ -97,7 +99,7 @@ const AboutNavigator = createStackNavigator({
     About : {screen : About}
 },
     { 
-        navigationOptions: ({ naviagation }) => ({
+        navigationOptions: ({ navigation }) => ({
             headerStyle: {
                 backgroundColor : "#00796b"
             },
@@ -112,6 +114,24 @@ const AboutNavigator = createStackNavigator({
     
 })
 
+const ReservationNavigator = createStackNavigator({
+  Reservation: { screen: Reservation }
+}, {
+  navigationOptions: ({ navigation }) => ({
+    headerStyle: {
+        backgroundColor: "#512DA8"
+    },
+    headerTitleStyle: {
+        color: "#fff"            
+    },
+    headerTintColor: "#fff",
+    headerLeft: <Icon name="menu" size={24}
+      iconStyle={{ color: 'white' }} 
+      onPress={ () => navigation.navigate('DrawerToggle') } />    
+  })
+})
+
+// Logo on drawer menu (navigator)
 const CustomDrawerContentComponent = (props) => (
     <ScrollView>
       <SafeAreaView style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
@@ -194,7 +214,23 @@ const MainNavigator = createDrawerNavigator({
             ),
 
         }, 
-    }
+    },
+
+    Reservation:
+      { screen: ReservationNavigator,
+        navigationOptions: {
+          title: 'Reserve Table',
+          drawerLabel: 'Reserve Table',
+          drawerIcon: ({ tintColor, focused }) => (
+            <Icon
+              name='cutlery'
+              type='font-awesome'            
+              size={24}
+              iconStyle={{ color: tintColor }}
+            />
+          ),
+        }
+      }
 
 
 }, {
@@ -210,6 +246,8 @@ class Main extends Component {
     this.props.fetchPromos();
     this.props.fetchLeaders();
   }
+
+
  
   render() {
     return (
