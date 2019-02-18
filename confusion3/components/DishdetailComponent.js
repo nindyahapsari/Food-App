@@ -4,6 +4,7 @@ import { Card, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
 import { postFavorite } from '../redux/ActionCreators';
+import { DISHES_FAILED, COMMENTS_FAILED } from '../redux/ActionTypes';
 
 
 
@@ -66,7 +67,7 @@ function RenderComments(props) {
     };
     
     return (
-        <Card title='Comments' >
+        <Card title="Comments" >
         <FlatList 
             data={comments}
             renderItem={renderCommentItem}
@@ -81,6 +82,8 @@ class Dishdetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            dishes : DISHES,
+            comments : COMMENTS,
             favorite : [] 
         };
     }
@@ -100,11 +103,10 @@ class Dishdetail extends Component {
         return(
             <ScrollView>
                 <RenderDish dish={this.props.dishes.dishes[+dishId]}
-                            favorite={this.state.favorites.some(el => el === dishId)}                    
-                            onPress={() => this.markFavorite(dishId)} 
+                            // favorite={this.state.favorites.some(el => el === dishId)}                    
+                            // onPress={() => this.markFavorite(dishId)} 
                     />
-                <RenderComments comments={this.props.comments.comments.filter
-                    ((comment) => comment.dishId === dishId)} />
+                <RenderComments comments={this.props.comments.comments.filter((comment) => comment.dishId === dishId)} />
             </ScrollView>
             
             );
@@ -119,4 +121,4 @@ class Dishdetail extends Component {
 
 
 
-export default connect(mapStateToProps)(DishDetail);
+export default connect(mapStateToProps, mapDispatchToProps)(DishDetail);
